@@ -1,0 +1,32 @@
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group 'com.mbicycle'
+version '1.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "quite-useful-lib"
+            url = uri("https://maven.pkg.github.com/Alexander-V-V/quite-useful-lib")
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from(components.java)
+            }
+        }
+    }
+}
+
+
